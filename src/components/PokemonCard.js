@@ -1,27 +1,42 @@
 import React from 'react'
+import { render } from 'react-dom'
 import { Card } from 'semantic-ui-react'
 
 class PokemonCard extends React.Component {
-  render() {
+  
+    state = {
+      frontBack: "front"
+    }
+
+    togglePictureUrl = () => {
+       this.state.frontBack === "front" ? this.setState({frontBack: 'back'}) : this.setState({frontBack: 'front'})
+    }  
+
+    pictureValue = () => {
+      return this.state.frontBack === "front" ? this.props.pokemon.sprites.front : this.props.pokemon.sprites.back
+    }
+
+    render(){
+      const {pokemon} = this.props
     return (
-      <Card>
+      <Card onClick={this.togglePictureUrl}>
         <div>
           <div className="image">
-            <img alt="oh no!" />
+            <img src={this.pictureValue()} alt="oh no!" />
           </div>
           <div className="content">
-            <div className="header">POKEMON NAME HERE</div>
+            <div className="header">{pokemon.name}</div>
           </div>
           <div className="extra content">
             <span>
               <i className="icon heartbeat red" />
-              POKEMON HP HERE hp
+              {pokemon.hp}
             </span>
           </div>
         </div>
       </Card>
     )
-  }
+    }
 }
 
 export default PokemonCard
