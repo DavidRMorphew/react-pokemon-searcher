@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
 import { Card } from 'semantic-ui-react'
 
 class PokemonCard extends React.Component {

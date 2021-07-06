@@ -21,6 +21,13 @@ class PokemonPage extends React.Component {
       [e.target.name]: e.target.value
     })
   }
+
+  addPokemonToFrontend = (newPokemon) => {
+    this.setState({
+      ...this.state, 
+      pokemon: [...this.state.pokemon, newPokemon]
+    })
+  }
   
   render() {
     this.filterSearch()
@@ -28,7 +35,7 @@ class PokemonPage extends React.Component {
       <Container>
         <h1>Pokemon Searcher</h1>
         <br />
-        <PokemonForm />
+        <PokemonForm addPokemonToFrontend={this.addPokemonToFrontend}/>
         <br />
         <Search filterTerm={this.filterTerm} onChange={this.onChange} value={this.state.filterTerm}/>
         <br />
